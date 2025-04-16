@@ -5,6 +5,7 @@
 3. Add a **.gitignore** file to exclude bulky files such as **.mp4** to get automatically excluded from the Git repository when the commit is pushed to the remote Github repository.
 4. Rename the repository to small case "object-recognition".
 5. Remove temporary files such as **.DS_Store** from the repository by placing their name in the **.gitignore** file.
+6. Add **mediapipe_env** to _.gitignore_.
 
 
 # Instructions to setup the project
