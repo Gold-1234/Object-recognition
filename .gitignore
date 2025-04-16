@@ -1,0 +1,13 @@
+.mp4
+mediapipe_env/
+media/
+.venv/
+.csv
+.tflite
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+.vscode/
+.idea/
+.env

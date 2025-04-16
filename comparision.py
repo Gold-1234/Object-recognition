@@ -28,7 +28,7 @@ if not cap.isOpened():
     exit()
 
 fps = cap.get(cv2.CAP_PROP_FPS)
-detection_interval = int(fps/5)
+detection_interval = int(fps/10)
 
 with ObjectDetector.create_from_options(options) as detector:
 	frame_index = 0
