@@ -9,7 +9,9 @@
 
 
 # Initial Experimental Setup
-1. Record **1-minute** video(s) in _controlled settings_ using strictly the **same phone**.
+
+## For Object Recognition
+1. Record **1-minute** video(s) in _controlled settings_ using strictly the **same phone** => Fix one of the orientations - **Portrait** / Landscape.
 2. Controlled Settings => You define the **objects**, the **scale of the objects**, the color, brightness, and all the lighting conditions in which the video(s) are shot.
 3. The holistic detection model must be fine-tuned for individual parameters => You have to iterate over the detection script using a for loop with different values of each relevant parameter such as _threshold_score_.
 4. The target for which we are fine-tuning the model is to achieve higher performance metrics (accuracy, precision, recall, f1-score) => True Positive, True Negative, False Positive, and False Negative.
