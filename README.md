@@ -22,6 +22,27 @@
 
 ## Instructions for Part 1 - Object Recognition
 
+This project tests object recognition using two different models: **YOLO** and **MediaPipe**.  
+Each model has its own setup and running instructions as outlined below.
+
+First, install the required libraries by running:
+```bash
+pip install -r requirements.txt
+```
+1. YOLO:
+   To set up YOLO, enter the following commands:
+   ```bash
+   cd yolo
+   python3 test.py
+   ```
+
+2. Mediapipe
+   To set up MediaPipe, enter the following commands:
+   ```bash
+   cd mediapipe
+   python3 live_stream.py
+    ```
+
 
 ## Instructions for Part 2 - Holistic Recognition using MediaPipe
 
