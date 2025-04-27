@@ -8,11 +8,11 @@ ObjectDetectorOptions = mp.tasks.vision.ObjectDetectorOptions
 VisionRunningMode = mp.tasks.vision.RunningMode
 
 options = ObjectDetectorOptions(
-    base_options=BaseOptions(model_asset_path='./efficientdet_lite2.tflite'),
+    base_options=BaseOptions(model_asset_path='../models/efficientdet_lite2.tflite'),
     score_threshold=0.25,
     running_mode=VisionRunningMode.VIDEO)
 
-cap = cv2.VideoCapture('../media/video3.mp4')  
+cap = cv2.VideoCapture('../media/video.mp4')  
 fps = cap.get(cv2.CAP_PROP_FPS)
 detection_interval = int(fps/5)
 

@@ -1,62 +1,38 @@
-import cv2
-from ultralytics import YOLO
-import time
+import os
+from models.download import download_yolo_model
+from yolo.yolo_prediction_csv import process_videos_yolo
+from yolo.compare import evaluate_yolo_predictions
 
-model = YOLO('yolov8n.pt')  # Downloads automatically if not present
+target_objects = ['bench', 'plant', 'bottle', 'watch', 'phone', 'notebook', 'bag', 'shoes', 'chair']
 
-# Open the video file
-cap = cv2.VideoCapture('../media/video3.mp4')
-if not cap.isOpened():
-    print("Error: Could not open video.")
-    exit()
+# to add light far
+video_name = ['light_near', 'dark_far', 'dark_near', 'light_far']
 
-fps = cap.get(cv2.CAP_PROP_FPS)
-detection_interval = int(fps/5)
+video_paths = []
+for name in video_name:
+    path = f'./media/{name}.mp4'
+    if not os.path.isfile(path):
+        print(f"Warning: Video '{path}' not found.")
+        continue
+    video_paths.append(path)
+	
+		
+model_path = download_yolo_model(
+    file_id='19BhXvQLiF12sMs28ElDBjFnckmiqlG-C',
+    model_name='yolo11n.pt',
+)
+if not os.path.isfile(model_path):
+    raise FileNotFoundError(f"Failed to download YOLO model: {model_path}")
 
-frame_index = 0
-last_detections = []
+process_videos_yolo(
+	video_paths,
+    target_objects,
+    model_path,
+)
 
-while True:
-    ret, frame = cap.read()
-    if not ret:
-        print("End of video reached.")
-        break
+evaluate_yolo_predictions(
+	video_paths,
+    target_objects,
+)
 
-    frame_index += 1
 
-    if frame_index%detection_interval == 0:
-        start_yolo = time.time()
-        results = model(frame)  
-        inference_time = (time.time() - start_yolo) * 1000
-        mp_count = 0
-        yolo_count = 0
-
-        last_detections = []
-        for result in results:
-            
-            boxes = result.boxes
-            for box in boxes: 
-                x1, y1, x2, y2 = map(int, box.xyxy[0])
-                conf = box.conf[0]
-                cls = int(box.cls[0])
-                label = model.names[cls]
-                last_detections.append((x1, y1, x2, y2, conf, label))
-        print(f"Frame {frame_index} | Inference Time: {inference_time:.2f} ms")
-           
-
-    for x1, y1, x2, y2, conf, label in last_detections:
-        cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255), 1)  # Red box
-        text_position = (max(0, x1), max(20, y1 - 10))
-        print(f"Detected: {label} | Score: {conf:.2f} | | Bounding Box: x1={x1}, y1={y1}, x2={x2}, y2={y2}")
-        cv2.putText(
-            frame, f"{label} ({conf:.2f})", text_position,
-            cv2.FONT_HERSHEY_SIMPLEX, 0.3, (0, 0, 255), 1
-        )
-
-    cv2.imshow("YOLOv8 Object Detection", frame)
-
-    if cv2.waitKey(30) & 0xFF == ord('q'):
-        break
-
-cap.release()
-cv2.destroyAllWindows()

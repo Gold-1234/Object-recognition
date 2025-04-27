@@ -4,7 +4,7 @@ import time
 import mediapipe as mp
 import csv
 
-model = YOLO('yolov8n.pt')  # Downloads automatically if not present
+model = YOLO('yolov8n.pt') 
 
 BaseOptions = mp.tasks.BaseOptions
 ObjectDetector = mp.tasks.vision.ObjectDetector

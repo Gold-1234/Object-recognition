@@ -1,13 +1,19 @@
-.mp4
+# Video files
+*.mp4
+
+# Folders
 mediapipe_env/
 media/
 .venv/
-.csv
-.tflite
-.DS_Store
-__pycache__/
-*.pyc
-*.pyo
 .vscode/
 .idea/
+__pycache__/
+
+# File types
+*.csv
+*.tflite
+*.pt
+*.pyc
+*.pyo
 .env
+.DS_Store
