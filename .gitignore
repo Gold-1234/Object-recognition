@@ -8,6 +8,7 @@ media/
 .vscode/
 .idea/
 __pycache__/
+ground_truth/
 
 # File types
 *.csv
