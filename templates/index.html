@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Object & Pose Detection</title>
+    <style>
+        video, img {
+            max-width: 100%;
+            height: auto;
+        }
+        #detections {
+            margin-top: 20px;
+            font-size: 18px;
+            font-family: sans-serif;
+            color: #333;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Live Video Stream</h2>
+    <button id="toggle-btn">Start Detection</button>
+    <br>
+    <img id="video" src="{{ url_for('video') }}">
+    <div id="detections">Detected objects: <span id="object-list">None</span></div>
+
+    <script>
+        let detectionRunning = false;
+
+        document.getElementById("toggle-btn").onclick = async function () {
+            const res = await fetch("/toggle_detection", { method: "POST" });
+            const data = await res.json();
+            detectionRunning = data.running;
+            this.textContent = detectionRunning ? "Stop Detection" : "Start Detection";
+        };
+
+        // Update object list every second
+        setInterval(async () => {
+            const res = await fetch("/get_detections");
+            const data = await res.json();
+            const objects = data.objects;
+            document.getElementById("object-list").textContent = objects.length ? objects.join(", ") : "None";
+        }, 1000);
+    </script>
+</body>
+</html>
