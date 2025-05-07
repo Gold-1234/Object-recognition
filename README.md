@@ -20,21 +20,21 @@ First, install the required libraries by running:
 ```bash
 pip install -r requirements.txt
 ```
-1. YOLO:
-   To set up YOLO, enter the following commands:
-   ```bash
-   cd yolo
-   python3 test.py
-   ```
+```bash
+python3 integrated.py
+```
 
-2. Mediapipe
-   To set up MediaPipe, enter the following commands:
-   ```bash
-   cd mediapipe
-   python3 live_stream.py
-    ```
+# System Architecture
+![UML class (6)](https://github.com/user-attachments/assets/a0c90b72-fd23-4cd9-8081-3300dd010d8e)
+
+# Working model
 
 
-## Instructions for Part 2 - Holistic Recognition using MediaPipe
 
+![WhatsApp Image 2025-04-30 at 22 14 44](https://github.com/user-attachments/assets/1f5d5534-ad14-4589-9454-a088cfb9f9d5)
+![WhatsApp Image 2025-04-30 at 22 16 41](https://github.com/user-attachments/assets/0444c3b6-c6c6-452a-b36d-de46ab41b93f)
+![WhatsApp Image 2025-04-30 at 22 21 50](https://github.com/user-attachments/assets/ddd26510-c037-4854-b555-b330acfabd6f)
+![WhatsApp Image 2025-04-30 at 22 17 03](https://github.com/user-attachments/assets/4813fd7f-9538-46bc-afa0-031620baf90b)
 
+![WhatsApp Image 2025-04-30 at 22 53 37 (1)](https://github.com/user-attachments/assets/0b8e7c17-f14f-4c05-9b40-3299ba3cf29c)
+![WhatsApp Image 2025-04-30 at 22 53 24 (1)](https://github.com/user-attachments/assets/b2cf4281-b5c5-4e57-a2a1-2513ee9db7ef)
